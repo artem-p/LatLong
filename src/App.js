@@ -17,24 +17,16 @@ function App() {
     <div className="App">
       <Container fluid>
         <Row>
-          <Col xs={2}>
-            Coordinates
-          </Col>
-          <Col xs={10}>
-            <Row>
-              // todo set height to map
+          <Col md={12}>
             <Map className='map' center={position} zoom={13}>
-    <TileLayer
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-    />
-    <Marker position={position}>
-      <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-    </Marker>
-  </Map>
-            </Row>
-            Map
-            {map}
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+              />
+              <Marker position={position}>
+                <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
+              </Marker>
+            </Map>
           </Col>
         </Row>
       </Container>
