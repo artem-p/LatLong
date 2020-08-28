@@ -16,8 +16,6 @@ function App() {
   return (
     <div className="App">
       <Container fluid>
-        <Row>
-          <Col md={12}>
             <Map className='map' center={position} zoom={13}>
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -27,8 +25,6 @@ function App() {
                 <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
               </Marker>
             </Map>
-          </Col>
-        </Row>
       </Container>
     </div>
   );
