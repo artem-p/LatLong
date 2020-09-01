@@ -1,19 +1,44 @@
 import React from 'react'
-import { render } from 'react-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 
 const position = [51.505, -0.09]
 
-const map = (
-  <Map center={position} zoom={13}>
-    <TileLayer
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-    />
-    <Marker position={position}>
-      <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-    </Marker>
-  </Map>
-)
+delete L.Icon.Default.prototype._getIconUrl;
 
-export default map;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
+
+export class MapMain extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Container fluid>
+          <Map
+            className='map'
+            center={position}
+            zoom={13}
+            >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            />
+            <Marker
+              draggable={true}
+              position={position}>
+              <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
+            </Marker>
+          </Map>
+        </Container>
+      </div>
+    );
+  }
+}
