@@ -7,7 +7,7 @@ import L from 'leaflet';
 
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 
-const position = [51.505, -0.09]
+const position = [51.505, -0.09];
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -18,6 +18,19 @@ L.Icon.Default.mergeOptions({
 });
 
 export class MapMain extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      marker: {position: position}
+    }
+  }
+
+  moveMarker = (e) => {
+    this.setState({marker: {position: e.latlng}})
+  }
+  
+
   render() {
     return (
       <div className="App">
@@ -26,6 +39,7 @@ export class MapMain extends React.Component {
             className='map'
             center={position}
             zoom={13}
+            onclick={this.moveMarker}
             >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -33,7 +47,7 @@ export class MapMain extends React.Component {
             />
             <Marker
               draggable={true}
-              position={position}>
+              position={this.state.marker.position}>
               <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
             </Marker>
           </Map>
