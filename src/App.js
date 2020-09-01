@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 
 
@@ -11,6 +12,13 @@ import map from './Map.js';
 
 const position = [51.505, -0.09]
 
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
 
 function App() {
   return (
