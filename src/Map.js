@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import Control from 'react-leaflet-control';
@@ -53,7 +53,11 @@ export class MapMain extends React.Component {
             </Marker>
 
             <Control position="topleft" >
-              
+              <Form>
+                <Form.Group>
+                  <Form.Control type="text"/>
+                </Form.Group>
+              </Form>
             </Control>
           </Map>
         </Container>
