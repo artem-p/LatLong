@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import Control from 'react-leaflet-control';
 
 
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
@@ -22,14 +23,14 @@ export class MapMain extends React.Component {
     super();
 
     this.state = {
-      marker: {position: position}
+      marker: { position: position }
     }
   }
 
   moveMarker = (e) => {
-    this.setState({marker: {position: e.latlng}})
+    this.setState({ marker: { position: e.latlng } })
   }
-  
+
 
   render() {
     return (
@@ -40,7 +41,7 @@ export class MapMain extends React.Component {
             center={position}
             zoom={13}
             onclick={this.moveMarker}
-            >
+          >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -50,6 +51,10 @@ export class MapMain extends React.Component {
               position={this.state.marker.position}>
               <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
             </Marker>
+
+            <Control position="topleft" >
+              
+            </Control>
           </Map>
         </Container>
       </div>
