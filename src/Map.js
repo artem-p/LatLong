@@ -52,12 +52,18 @@ export class MapMain extends React.Component {
               <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
             </Marker>
 
-            <Control position="topleft" >
-              <Form>
-                <Form.Group>
-                  <Form.Control type="text"/>
-                </Form.Group>
-              </Form>
+            <Control position="topleft" className='coord-control' >
+                <Container>
+                  <Row>
+                    <Col>
+                      <Form>
+                        <Form.Group>
+                          <Form.Control type="text"/>
+                        </Form.Group>
+                      </Form>
+                    </Col>
+                  </Row>
+                </Container>
             </Control>
           </Map>
         </Container>
