@@ -58,6 +58,12 @@ export class MapMain extends React.Component {
                     <Col>
                       <Form>
                         <Form.Group>
+                          <Form.Label>Latitude</Form.Label>
+                          <Form.Control type="text"/>
+                        </Form.Group>
+
+                        <Form.Group>
+                          <Form.Label>Longitude</Form.Label>
                           <Form.Control type="text"/>
                         </Form.Group>
                       </Form>
