@@ -23,25 +23,24 @@ export class MapMain extends React.Component {
     super();
 
     this.state = {
-      marker: { position: {lat: position[0], lon: position[1]} }
+      marker: { position: {lat: position[0], lng: position[1]} }
     }
 
     this.onLatInputChange = this.onLatInputChange.bind(this);
   }
 
   moveMarker = (e) => {
-    this.setState({ marker: { position: e.latlng } })
+    this.setState({ marker: { position: {lat: e.latlng.lat, lng: e.latlng.lng} }});
   }
 
+  
   onLatInputChange(event) {
-    console.log(event.target.value);
     let lat = event.target.value;
 
-    let position = this.state.marker.position;
-    position[0] = parseFloat(lat);
 
-    console.log(position);
-    this.setState({marker: {position: position}});
+    let lng = this.state.marker.position.lng;
+
+    this.setState({marker: {position: {lat: event.target.value, lng: lng}}});
   }
 
 
