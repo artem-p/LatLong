@@ -28,6 +28,7 @@ export class MapMain extends React.Component {
 
     this.onLatInputChange = this.onLatInputChange.bind(this);
     this.onLonInputChange = this.onLonInputChange.bind(this);
+    this.handleMarkerMove = this.handleMarkerMove.bind(this);
   }
 
   moveMarker = (e) => {
@@ -53,6 +54,11 @@ export class MapMain extends React.Component {
   }
 
 
+  handleMarkerMove(event) {
+    this.setState({marker: {position: event.target.getLatLng()}});
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -69,7 +75,9 @@ export class MapMain extends React.Component {
             />
             <Marker
               draggable={true}
-              position={this.state.marker.position}>
+              position={this.state.marker.position}
+              onMoveEnd={this.handleMarkerMove}
+              >
               <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
             </Marker>
 
