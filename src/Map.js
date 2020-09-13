@@ -23,7 +23,7 @@ export class MapMain extends React.Component {
     super();
 
     this.state = {
-      marker: { position: position }
+      marker: { position: {lat: position[0], lon: position[1]} }
     }
 
     this.onLatInputChange = this.onLatInputChange.bind(this);
@@ -35,6 +35,13 @@ export class MapMain extends React.Component {
 
   onLatInputChange(event) {
     console.log(event.target.value);
+    let lat = event.target.value;
+
+    let position = this.state.marker.position;
+    position[0] = parseFloat(lat);
+
+    console.log(position);
+    this.setState({marker: {position: position}});
   }
 
 
@@ -65,7 +72,7 @@ export class MapMain extends React.Component {
                       <Form>
                         <Form.Group>
                           <Form.Label>Latitude</Form.Label>
-                          <Form.Control type="text" defaultValue={this.state.marker.position[0]} onChange={this.onLatInputChange}/>
+                          <Form.Control type="text" value={this.state.marker.position.lat} onChange={this.onLatInputChange}/>
                         </Form.Group>
 
                         <Form.Group>
