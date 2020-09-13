@@ -27,6 +27,7 @@ export class MapMain extends React.Component {
     }
 
     this.onLatInputChange = this.onLatInputChange.bind(this);
+    this.onLonInputChange = this.onLonInputChange.bind(this);
   }
 
   moveMarker = (e) => {
@@ -37,10 +38,18 @@ export class MapMain extends React.Component {
   onLatInputChange(event) {
     let lat = event.target.value;
 
-
     let lng = this.state.marker.position.lng;
 
-    this.setState({marker: {position: {lat: event.target.value, lng: lng}}});
+    this.setState({marker: {position: {lat: lat, lng: lng}}});
+  }
+
+
+  onLonInputChange(event) {
+    let lng = event.target.value;
+
+    let lat = this.state.marker.position.lat;
+
+    this.setState({marker: {position: {lat: lat, lng: lng}}});
   }
 
 
@@ -76,7 +85,7 @@ export class MapMain extends React.Component {
 
                         <Form.Group>
                           <Form.Label>Longitude</Form.Label>
-                          <Form.Control type="text"/>
+                          <Form.Control type="text" value={this.state.marker.position.lng} onChange={this.onLonInputChange}/>
                         </Form.Group>
                       </Form>
                     </Col>
