@@ -78,7 +78,7 @@ export class MapMain extends React.Component {
               position={this.state.marker.position}
               onMoveEnd={this.handleMarkerMove}
               >
-              <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
+              <Popup>{this.state.marker.position.lat}, {this.state.marker.position.lng}</Popup>
             </Marker>
 
             <Control position="topleft" className='coord-control' >
