@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {createRef} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import 'leaflet/dist/leaflet.css';
@@ -26,13 +26,27 @@ export class MapMain extends React.Component {
       marker: { position: {lat: position[0], lng: position[1]} }
     }
 
+    this.markerRef = createRef();
+
     this.onLatInputChange = this.onLatInputChange.bind(this);
     this.onLonInputChange = this.onLonInputChange.bind(this);
     this.handleMarkerMove = this.handleMarkerMove.bind(this);
   }
 
+  
+  componentDidMount() {
+    console.log(this.markerRef);
+  }
+
+  
   moveMarker = (e) => {
     this.setState({ marker: { position: {lat: e.latlng.lat, lng: e.latlng.lng} }});
+
+    let marker = this.markerRef.current;
+
+    if (marker != null) {
+      marker.leafletElement.openPopup();
+    }
   }
 
   
@@ -77,6 +91,7 @@ export class MapMain extends React.Component {
               draggable={true}
               position={this.state.marker.position}
               onMoveEnd={this.handleMarkerMove}
+              ref={this.markerRef}
               >
               <Popup>{this.state.marker.position.lat}, {this.state.marker.position.lng}</Popup>
             </Marker>
