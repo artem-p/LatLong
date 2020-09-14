@@ -35,6 +35,7 @@ export class MapMain extends React.Component {
 
   
   componentDidMount() {
+    // todo https://www.google.com/search?q=react+ref+current+null&oq=react+ref+curr&aqs=chrome.1.0l2j69i57j0l5.6116j0j1&sourceid=chrome&ie=UTF-8
     console.log(this.markerRef);
   }
 
