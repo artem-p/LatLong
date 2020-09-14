@@ -1,4 +1,4 @@
-import React, {createRef} from 'react'
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import 'leaflet/dist/leaflet.css';
@@ -26,7 +26,7 @@ export class MapMain extends React.Component {
       marker: { position: {lat: position[0], lng: position[1]} }
     }
 
-    this.markerRef = createRef();
+    this.markerRef = React.createRef();
 
     this.onLatInputChange = this.onLatInputChange.bind(this);
     this.onLonInputChange = this.onLonInputChange.bind(this);
