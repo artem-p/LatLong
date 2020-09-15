@@ -31,10 +31,13 @@ export class MapMain extends React.Component {
     this.onLatInputChange = this.onLatInputChange.bind(this);
     this.onLonInputChange = this.onLonInputChange.bind(this);
     this.handleMarkerMove = this.handleMarkerMove.bind(this);
+    this.handleMarkerAdd = this.handleMarkerAdd.bind(this);
+    this.openMarkerPopup = this.openMarkerPopup.bind(this);
   }
 
   
   componentDidMount() {
+    console.log('did mount');
     // todo https://www.google.com/search?q=react+ref+current+null&oq=react+ref+curr&aqs=chrome.1.0l2j69i57j0l5.6116j0j1&sourceid=chrome&ie=UTF-8
     console.log(this.markerRef);
   }
@@ -43,8 +46,20 @@ export class MapMain extends React.Component {
   moveMarker = (e) => {
     this.setState({ marker: { position: {lat: e.latlng.lat, lng: e.latlng.lng} }});
 
-    let marker = this.markerRef.current;
+    this.openMarkerPopup();    
+  }
 
+  openMarkerPopup() {
+    let marker = this.markerRef.current;
+    if (marker != null) {
+      marker.leafletElement.openPopup();
+    }
+  }
+
+  handleMarkerAdd() {
+    console.log('add');
+    console.log(this.markerRef);
+    let marker = this.markerRef.current;
     if (marker != null) {
       marker.leafletElement.openPopup();
     }
@@ -71,6 +86,8 @@ export class MapMain extends React.Component {
 
   handleMarkerMove(event) {
     this.setState({marker: {position: event.target.getLatLng()}});
+
+    this.openMarkerPopup();
   }
 
 
@@ -92,6 +109,7 @@ export class MapMain extends React.Component {
               draggable={true}
               position={this.state.marker.position}
               onMoveEnd={this.handleMarkerMove}
+              onAdd={this.handleMarkerAdd}
               ref={this.markerRef}
               >
               <Popup>{this.state.marker.position.lat}, {this.state.marker.position.lng}</Popup>
