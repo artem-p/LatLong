@@ -37,6 +37,7 @@ export class MapMain extends React.Component {
   
   componentDidMount() {
     console.log(this.markerRef);
+    setTimeout(this.openMarkerPopup, 100);  // set timeout so popup opens after marker placed on map
   }
 
   
@@ -45,6 +46,7 @@ export class MapMain extends React.Component {
 
     this.openMarkerPopup();    
   }
+  
 
   openMarkerPopup() {
     let marker = this.markerRef.current;
