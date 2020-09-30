@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import Control from 'react-leaflet-control';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
@@ -117,7 +118,9 @@ export class MapMain extends React.Component {
                           </Col>
 
                           <Col xs={3}>
-                            <Button>Copy</Button>
+                            <CopyToClipboard text={this.state.marker.position.lat}>
+                              <Button>Copy</Button>
+                            </CopyToClipboard>
                           </Col>
                         </Form.Row>
                       </Form.Group>
@@ -131,7 +134,9 @@ export class MapMain extends React.Component {
                           </Col>
 
                           <Col xs={3}>
-                            <Button>Copy</Button>
+                            <CopyToClipboard text={this.state.marker.position.lng}>
+                              <Button>Copy</Button>
+                            </CopyToClipboard>
                           </Col>
                         </Form.Row>
                       </Form.Group>
