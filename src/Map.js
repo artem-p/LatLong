@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import Control from 'react-leaflet-control';
@@ -23,7 +23,7 @@ export class MapMain extends React.Component {
     super();
 
     this.state = {
-      marker: { position: {lat: position[0], lng: position[1]} }
+      marker: { position: { lat: position[0], lng: position[1] } }
     }
 
     this.markerRef = React.createRef();
@@ -34,19 +34,19 @@ export class MapMain extends React.Component {
     this.openMarkerPopup = this.openMarkerPopup.bind(this);
   }
 
-  
+
   componentDidMount() {
     console.log(this.markerRef);
     setTimeout(this.openMarkerPopup, 100);  // set timeout so popup opens after marker placed on map
   }
 
-  
-  moveMarker = (e) => {
-    this.setState({ marker: { position: {lat: e.latlng.lat, lng: e.latlng.lng} }});
 
-    this.openMarkerPopup();    
+  moveMarker = (e) => {
+    this.setState({ marker: { position: { lat: e.latlng.lat, lng: e.latlng.lng } } });
+
+    this.openMarkerPopup();
   }
-  
+
 
   openMarkerPopup() {
     let marker = this.markerRef.current;
@@ -60,7 +60,7 @@ export class MapMain extends React.Component {
 
     let lng = this.state.marker.position.lng;
 
-    this.setState({marker: {position: {lat: lat, lng: lng}}});
+    this.setState({ marker: { position: { lat: lat, lng: lng } } });
   }
 
 
@@ -69,12 +69,12 @@ export class MapMain extends React.Component {
 
     let lat = this.state.marker.position.lat;
 
-    this.setState({marker: {position: {lat: lat, lng: lng}}});
+    this.setState({ marker: { position: { lat: lat, lng: lng } } });
   }
 
 
   handleMarkerMove(event) {
-    this.setState({marker: {position: event.target.getLatLng()}});
+    this.setState({ marker: { position: event.target.getLatLng() } });
 
     this.openMarkerPopup();
   }
@@ -99,28 +99,46 @@ export class MapMain extends React.Component {
               position={this.state.marker.position}
               onMoveEnd={this.handleMarkerMove}
               ref={this.markerRef}
-              >
+            >
               <Popup>{this.state.marker.position.lat}, {this.state.marker.position.lng}</Popup>
             </Marker>
 
             <Control position="topleft" className='coord-control' >
-                <Container>
-                  <Row>
-                    <Col>
-                      <Form>
-                        <Form.Group>
-                          <Form.Label>Latitude</Form.Label>
-                          <Form.Control type="text" value={this.state.marker.position.lat} onChange={this.onLatInputChange}/>
-                        </Form.Group>
+              <Container>
+                <Row>
+                  <Col>
+                    <Form>
+                      <Form.Group>
+                        <Form.Label>Latitude</Form.Label>
 
-                        <Form.Group>
-                          <Form.Label>Longitude</Form.Label>
-                          <Form.Control type="text" value={this.state.marker.position.lng} onChange={this.onLonInputChange}/>
-                        </Form.Group>
-                      </Form>
-                    </Col>
-                  </Row>
-                </Container>
+                        <Form.Row>
+                          <Col xs={9}>
+                            <Form.Control type="text" value={this.state.marker.position.lat} onChange={this.onLatInputChange} />
+                          </Col>
+
+                          <Col xs={3}>
+                            <Button>Copy</Button>
+                          </Col>
+                        </Form.Row>
+                      </Form.Group>
+
+                      <Form.Group>
+                        <Form.Label>Longitude</Form.Label>
+
+                        <Form.Row>
+                          <Col xs={9}>
+                          <Form.Control type="text" value={this.state.marker.position.lng} onChange={this.onLonInputChange} />
+                          </Col>
+
+                          <Col xs={3}>
+                            <Button>Copy</Button>
+                          </Col>
+                        </Form.Row>
+                      </Form.Group>
+                    </Form>
+                  </Col>
+                </Row>
+              </Container>
             </Control>
           </Map>
         </Container>
