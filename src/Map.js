@@ -37,15 +37,24 @@ export class MapMain extends React.Component {
 
 
   componentDidMount() {
-    console.log(this.markerRef);
     setTimeout(this.openMarkerPopup, 100);  // set timeout so popup opens after marker placed on map
   }
 
 
   moveMarker = (e) => {
-    this.setState({ marker: { position: { lat: e.latlng.lat, lng: e.latlng.lng } } });
+    this.saveMarkerPosition(e.latlng);
 
     this.openMarkerPopup();
+  }
+
+  saveMarkerPosition(latlng) {
+    // save marker position in state
+    // round coordinates to 6 digits
+
+    let lat = latlng.lat.toFixed(6);
+    let lon = latlng.lng.toFixed(6);
+
+    this.setState({marker: {position: {lat: lat, lng: lon}}});
   }
 
 
@@ -75,7 +84,7 @@ export class MapMain extends React.Component {
 
 
   handleMarkerMove(event) {
-    this.setState({ marker: { position: event.target.getLatLng() } });
+    this.saveMarkerPosition(event.target.getLatLng());
 
     this.openMarkerPopup();
   }
