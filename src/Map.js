@@ -110,7 +110,13 @@ export class MapMain extends React.Component {
               onMoveEnd={this.handleMarkerMove}
               ref={this.markerRef}
             >
-              <Popup>{this.state.marker.position.lat}, {this.state.marker.position.lng}</Popup>
+              <Popup>{this.state.marker.position.lat}, {this.state.marker.position.lng} { }
+                <CopyToClipboard text={this.state.marker.position.lat + ", " + this.state.marker.position.lng}>
+                  <Button size="sm">
+                    Copy
+                  </Button>
+                </CopyToClipboard> 
+              </Popup>
             </Marker>
 
             <Control position="topleft" className='coord-control' >
