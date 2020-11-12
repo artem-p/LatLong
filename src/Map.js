@@ -3,11 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import Control from 'react-leaflet-control';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
-import IconButton from '@material-ui/core/IconButton';
+import './CoordinatesControl';
 
 
 const position = [51.505, -0.09];
@@ -120,50 +118,7 @@ export class MapMain extends React.Component {
               </Popup>
             </Marker>
 
-            <Control position="topleft" className='coord-control' >
-              <Container>
-                <Row>
-                  <Col>
-                  <IconButton aria-label="gps">
-                    <GpsFixedIcon />
-                  </IconButton>
-                    <Form>
-                      <Form.Group>
-                        <Form.Label>Latitude</Form.Label>
-
-                        <Form.Row>
-                          <Col xs={9}>
-                            <Form.Control type="text" value={this.state.marker.position.lat} onChange={this.onLatInputChange} />
-                          </Col>
-
-                          <Col xs={3}>
-                            <CopyToClipboard text={this.state.marker.position.lat}>
-                              <Button>Copy</Button>
-                            </CopyToClipboard>
-                          </Col>
-                        </Form.Row>
-                      </Form.Group>
-
-                      <Form.Group>
-                        <Form.Label>Longitude</Form.Label>
-
-                        <Form.Row>
-                          <Col xs={9}>
-                          <Form.Control type="text" value={this.state.marker.position.lng} onChange={this.onLonInputChange} />
-                          </Col>
-
-                          <Col xs={3}>
-                            <CopyToClipboard text={this.state.marker.position.lng}>
-                              <Button>Copy</Button>
-                            </CopyToClipboard>
-                          </Col>
-                        </Form.Row>
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                </Row>
-              </Container>
-            </Control>
+            
           </Map>
         </Container>
       </div>
