@@ -118,7 +118,12 @@ export class MapMain extends React.Component {
               </Popup>
             </Marker>
 
-            <CoordinatesControl lat={this.state.marker.position.lat} long={this.state.marker.position.lng}/>            
+            <CoordinatesControl 
+              lat={this.state.marker.position.lat} 
+              long={this.state.marker.position.lng}
+              onLatInputChange={this.onLatInputChange}
+              onLonInputChange={this.onLonInputChange}
+            />            
           </Map>
         </Container>
       </div>
