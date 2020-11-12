@@ -7,7 +7,7 @@ import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
-function CoordinatesControl(lat, long) {
+function CoordinatesControl({lat, long, onLatInputChange, onLonInputChange}) {
     return (
         <Control position="topleft" className='coord-control' >
               <Container>
@@ -22,11 +22,11 @@ function CoordinatesControl(lat, long) {
 
                         <Form.Row>
                           <Col xs={9}>
-                            <Form.Control type="text" value={this.state.marker.position.lat} onChange={this.onLatInputChange} />
+                            <Form.Control type="text" value={lat} onChange={onLatInputChange} />
                           </Col>
 
                           <Col xs={3}>
-                            <CopyToClipboard text={this.state.marker.position.lat}>
+                            <CopyToClipboard text={lat}>
                               <Button>Copy</Button>
                             </CopyToClipboard>
                           </Col>
@@ -38,11 +38,11 @@ function CoordinatesControl(lat, long) {
 
                         <Form.Row>
                           <Col xs={9}>
-                          <Form.Control type="text" value={this.state.marker.position.lng} onChange={this.onLonInputChange} />
+                          <Form.Control type="text" value={long} onChange={onLonInputChange} />
                           </Col>
 
                           <Col xs={3}>
-                            <CopyToClipboard text={this.state.marker.position.lng}>
+                            <CopyToClipboard text={long}>
                               <Button>Copy</Button>
                             </CopyToClipboard>
                           </Col>
@@ -56,4 +56,4 @@ function CoordinatesControl(lat, long) {
     )
 }
 
-export default Control
+export default CoordinatesControl

@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
-import './CoordinatesControl';
+import CoordinatesControl from './CoordinatesControl';
 
 
 const position = [51.505, -0.09];
@@ -118,7 +118,7 @@ export class MapMain extends React.Component {
               </Popup>
             </Marker>
 
-            
+            <CoordinatesControl lat={this.state.marker.position.lat} long={this.state.marker.position.lng}/>            
           </Map>
         </Container>
       </div>
