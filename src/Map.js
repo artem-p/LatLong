@@ -5,9 +5,10 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import Control from 'react-leaflet-control';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
-
+import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import IconButton from '@material-ui/core/IconButton';
+
 
 const position = [51.505, -0.09];
 
@@ -123,6 +124,9 @@ export class MapMain extends React.Component {
               <Container>
                 <Row>
                   <Col>
+                  <IconButton aria-label="gps">
+                    <GpsFixedIcon />
+                  </IconButton>
                     <Form>
                       <Form.Group>
                         <Form.Label>Latitude</Form.Label>
